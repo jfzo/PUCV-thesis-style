@@ -1,0 +1,102 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{iespucvtesis}[2025/06/08 PUCV master's thesis style with defaults]
+
+% Core packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{ifthen}
+
+% Page layout
+\geometry{
+  a4paper,
+  top=2cm,
+  bottom=3cm,
+  left=3.5cm,
+  right=2.5cm,
+}
+
+% Line spacing
+\renewcommand{\baselinestretch}{1.5}
+
+% Chapter format
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\huge}
+  {\chaptername\ \thechapter}{20pt}{\Huge}
+
+% Headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\nouppercase{\leftmark}}
+
+% Default values for institution fields
+\newcommand{\PUCV@faculty}{}%Facultad de Ciencias}
+\newcommand{\PUCV@school}{}%Instituto de Estadística}
+\newcommand{\PUCV@program}{}%Magíster en Estadística}
+
+% User-definable fields (with empty defaults)
+\newcommand{\PUCV@title}{}
+\newcommand{\PUCV@author}{}
+\newcommand{\PUCV@advisor}{}
+\newcommand{\PUCV@coadvisor}{}
+\newcommand{\PUCV@date}{}
+
+% Setup command (with defaults for the first three fields)
+\newcommand{\PUCVSetup}[7]{%
+  \renewcommand{\PUCV@faculty}{#1}%
+  \renewcommand{\PUCV@school}{#2}%
+  \renewcommand{\PUCV@program}{#3}%
+  \renewcommand{\PUCV@title}{#4}%
+  \renewcommand{\PUCV@author}{#5}%
+  \renewcommand{\PUCV@advisor}{#6}%
+  \renewcommand{\PUCV@date}{#7}%
+}
+
+% Optional: only redefine if explicitly called
+\newcommand{\PUCVCoAdvisor}[1]{%
+  \renewcommand{\PUCV@coadvisor}{#1}%
+}
+
+% Title page
+\newcommand{\PUCVTitlePage}{%
+  \begin{titlepage}
+    \centering
+    \includegraphics[width=4cm]{pucv_logo.png}\par\vspace{1cm}
+    {\scshape
+        \LARGE PONTIFICIA UNIVERSIDAD CATÓLICA DE VALPARAÍSO\par
+        \Large \PUCV@faculty\par
+        \Large \PUCV@school\par
+        \Large \PUCV@program\par
+        \vspace{1.2cm}
+        \Huge\bfseries \PUCV@title\par
+        \vspace{1.5cm}
+        \Large \PUCV@author\par
+        \vfill
+        \Large Profesor Guía: \PUCV@advisor\par
+        \ifthenelse{\equal{\PUCV@coadvisor}{}}{}{%
+          \Large Co-Guía: \PUCV@coadvisor\par
+        }
+        \vspace{0.8cm}
+        \Large Valparaíso, Chile\par
+        \Large \PUCV@date\par
+    }
+  \end{titlepage}
+}
+
+% Unnumbered chapter helper
+\newcommand{\PUCVchapterstar}[1]{%
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
+}
+
+% Bibliography
+\AtEndDocument{%
+  \bibliographystyle{apalike}
+  \bibliography{bibliografia}
+}

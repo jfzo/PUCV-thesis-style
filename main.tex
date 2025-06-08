@@ -1,0 +1,48 @@
+\documentclass[12pt]{report}
+\usepackage{pucvtesis}
+
+\begin{document}
+
+% Generate title page
+\PUCVTitlePage
+  {Nombre de la Facultad}
+  {Nombre de la Escuela}
+  {Nombre del Programa}
+  {TÍTULO DE LA TESIS}
+  {Nombre del Autor}
+  {Nombre del Profesor Guía}
+  {\today}
+
+% Opcional
+\PUCVchapterstar{Agradecimientos}
+Escribe tus agradecimientos aquí.
+
+\PUCVchapterstar{Resumen}
+Resumen en español.
+
+\PUCVchapterstar{Abstract}
+Abstract en inglés.
+
+\tableofcontents
+\newpage
+
+\chapter{Introducción}
+\lipsum[1-2]
+
+\chapter{Marco Teórico}
+\lipsum[3-4]
+
+\chapter{Metodología}
+\lipsum[5-6]
+
+\chapter{Resultados}
+\lipsum[7-8]
+
+\chapter{Discusión}
+\lipsum[9]
+
+\chapter{Conclusiones}
+\lipsum[10]
+
+% Bibliografía automática al final
+\end{document}
