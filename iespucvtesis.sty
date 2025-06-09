@@ -4,7 +4,9 @@
 % Core packages
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
 \usepackage[spanish]{babel}
+\usepackage{csquotes}
 \usepackage{graphicx}
 \usepackage{geometry}
 \usepackage{titlesec}
@@ -12,13 +14,14 @@
 \usepackage{setspace}
 \usepackage{ifthen}
 
+
 % Page layout
 \geometry{
   a4paper,
   top=2cm,
   bottom=3cm,
-  left=3.5cm,
-  right=2.5cm,
+  left=2.0cm,
+  right=2.0cm,
 }
 
 % Line spacing
@@ -67,24 +70,26 @@
 \newcommand{\PUCVTitlePage}{%
   \begin{titlepage}
     \centering
-    \includegraphics[width=4cm]{pucv_logo.png}\par\vspace{1cm}
     {\scshape
-        \LARGE PONTIFICIA UNIVERSIDAD CATÓLICA DE VALPARAÍSO\par
+        \Large \textbf{PONTIFICIA UNIVERSIDAD CATÓLICA DE VALPARAÍSO}\par
         \Large \PUCV@faculty\par
         \Large \PUCV@school\par
-        \Large \PUCV@program\par
+        %\Large \PUCV@program\par
         \vspace{1.2cm}
-        \Huge\bfseries \PUCV@title\par
+    \includegraphics[width=5cm]{pucv_logo.png}\par\vspace{1cm}
+        
+        \LARGE\bfseries \enquote*{\PUCV@title}\par
         \vspace{1.5cm}
-        \Large \PUCV@author\par
+        \large TESIS PARA OPTAR AL GRADO DE \MakeUppercase\PUCV@program\par\vspace{5pt}
+        \Large \MakeUppercase\PUCV@author\par
         \vfill
-        \Large Profesor Guía: \PUCV@advisor\par
+        \large \MakeUppercase{Profesor Guía}\\ \MakeUppercase\PUCV@advisor\par
         \ifthenelse{\equal{\PUCV@coadvisor}{}}{}{%
-          \Large Co-Guía: \PUCV@coadvisor\par
+          \large \MakeUppercase{\PUCV@coadvisor}\par
         }
         \vspace{0.8cm}
-        \Large Valparaíso, Chile\par
-        \Large \PUCV@date\par
+        %\Large Valparaíso, \PUCV@date\par
+        \Large Valparaíso, \the\year\par
     }
   \end{titlepage}
 }
